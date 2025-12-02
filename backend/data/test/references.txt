@@ -1,0 +1,5 @@
+eng1.wav	The boy swore that, every time he heard the alarm, he would heed its message.
+eng2.wav	Their faces were hidden behind blue veils, with only their eyes showing
+spanish1.wav	i am working a lot
+french1.wav	Allô, Anwaru ?
+hindi1.wav	thumhare pass theen mahine bache he

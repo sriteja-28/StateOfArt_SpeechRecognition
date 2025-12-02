@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+transformers
+torchaudio
+soundfile
+numpy
+python-multipart
+websockets
+pydub
+# Added dependencies required by transformers/tokenizers
+protobuf>=3.20.0
+sentencepiece
+librosa
+jiwer
+datasets
