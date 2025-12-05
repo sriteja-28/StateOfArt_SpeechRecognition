@@ -122,7 +122,7 @@ def transcribe_audio_path(path: str, model_name: str = "wav2vec2-base", chunk_si
                 logits = model(inputs.input_values).logits
             ids = torch.argmax(logits, dim=-1)
             return processor.batch_decode(ids)[0]
-        else:  # whisper
+        else:
             # Whisper expects input_features rather than input_values; processor handles feature extraction
             inputs = processor(chunk_np, sampling_rate=sr, return_tensors="pt")
             # Some whisper models expect specific processor calls; use generate

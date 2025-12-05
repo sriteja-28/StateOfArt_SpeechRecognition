@@ -10,10 +10,10 @@ from app.transcribe import transcribe_audio_path  # your transcription function
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# --- FastAPI app ---
+# FastAPI app
 app = FastAPI(title="Speech Recognition API")
 
-# --- CORS ---
+# CORS 
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
@@ -32,7 +32,7 @@ app.add_middleware(
     expose_headers=["*"]
 )
 
-# --- helper: convert audio to wav ---
+# helper: convert audio to wav
 def convert_to_wav(file_path: str) -> str:
     try:
         # Try to find ffmpeg in PATH first
@@ -42,12 +42,12 @@ def convert_to_wav(file_path: str) -> str:
         ffmpeg_paths = [
             r"C:\ffmpeg\bin\ffmpeg.exe",
             r"C:\Program Files\ffmpeg\bin\ffmpeg.exe",
-            r"ffmpeg"  # Try system PATH again
+            r"ffmpeg" 
         ]
         ffprobe_paths = [
             r"C:\ffmpeg\bin\ffprobe.exe",
             r"C:\Program Files\ffmpeg\bin\ffprobe.exe",
-            r"ffprobe"  # Try system PATH again
+            r"ffprobe" 
         ]
         
         success = False
@@ -68,11 +68,11 @@ def convert_to_wav(file_path: str) -> str:
     audio.export(wav_path, format="wav")
     return wav_path
 
-# --- REST endpoint ---
+# REST endpoint
 @app.post("/transcribe")
 async def transcribe(
     file: UploadFile = File(...), 
-    model: str = "wav2vec2-base",  # Default to fastest model
+    model: str = "wav2vec2-base",  # default to fastest model
     lang: str = "en"
 ):
     """Transcribe uploaded audio file"""
@@ -106,20 +106,12 @@ async def transcribe(
         if tmp_path_wav and os.path.exists(tmp_path_wav):
             os.remove(tmp_path_wav)
 
-# --- Add health check endpoint ---
+# Add health check endpoint
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
 
-# --- WebSocket endpoint for streaming ---
-# @app.websocket("/ws/stream/")
-# async def websocket_stream(ws: WebSocket):
-#     logger.info("New WebSocket connection request")
-#     await ws.accept()
-#     logger.info("WebSocket connection accepted")
-#     buffer = bytearray()
-#     CHUNK_THRESHOLD = 1600  # lower threshold for more frequent partial transcriptions
-
+# WebSocket endpoint for streaming
 @app.websocket("/ws/stream/")
 async def websocket_stream(ws: WebSocket):
     await ws.accept()
