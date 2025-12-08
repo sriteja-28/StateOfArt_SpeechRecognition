@@ -21,7 +21,7 @@ origins = [
     "http://127.0.0.1:5174",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://state-of-art-speech-recognition.vercel.app/",
+    "https://state-of-art-speech-recognition.vercel.app",
 ]
 
 app.add_middleware(
@@ -163,8 +163,8 @@ async def websocket_stream(ws: WebSocket):
                     full_audio_chunks = []
                     buffer = bytearray()
 
-    except WebSocketDisconnect:
-        pass
+    # except WebSocketDisconnect:
+    #     pass
     except WebSocketDisconnect:
         logger.info("WebSocket disconnected; final buffer size: %d", len(buffer))
         if buffer:
