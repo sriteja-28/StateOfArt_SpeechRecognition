@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Box, Typography } from '@mui/material'
 import FileUpload from './components/FileUpload'
-import BckImg from "../public/images/image.png"
+import BckImg from "../public/image.png"
 
 export default function App() {
   return (
