@@ -9,6 +9,7 @@ export default function FileUpload() {
   const [usedModel, setUsedModel] = useState('');
   const [model, setModel] = useState("wav2vec2-base");
 
+  const API_URL = "https://stateofart-speechrecognition.onrender.com/";
   const audioUrl = file ? URL.createObjectURL(file) : null;
 
   const handleFileSelect = (e) => {
@@ -34,7 +35,8 @@ export default function FileUpload() {
       }, 500);
 
       const res = await fetch(
-        `http://localhost:8000/transcribe/?lang=${lang}&model=${model}`,
+        // `http://localhost:8000/transcribe/?lang=${lang}&model=${model}`,
+        `${API_URL}/transcribe/?lang=${lang}&model=${model}`,
         { method: "POST", body: fd }
       );
 
