@@ -1,13 +1,15 @@
 import React from 'react'
 import { Container, Box, Typography } from '@mui/material'
 import FileUpload from './components/FileUpload'
+import BckImg from "../public/images/image.png"
 
 export default function App() {
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundImage: `url('../src/images/image.png')`,
+        // backgroundImage: `url('../src/images/image.png')`,
+        backgroundImage: `url(${BckImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
