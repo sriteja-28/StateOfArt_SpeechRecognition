@@ -7,15 +7,15 @@ RUN apt-get update && apt-get install -y ffmpeg
 # set working directory
 WORKDIR /app
 
-# copy code
-COPY backend/ /app
-
-# install dependencies
-COPY backend/requirements.txt /app/
+# copying requirements first
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# expose port
+# copying the rest of the backend code
+COPY . /app
+
+# exposing port
 EXPOSE 8242
 
-# start uvicorn
+# starting uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8242"]
