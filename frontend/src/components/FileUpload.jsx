@@ -36,7 +36,7 @@ export default function FileUpload() {
 
       const res = await fetch(
         // `http://localhost:8000/transcribe/?lang=${lang}&model=${model}`,
-        `${API_URL}/transcribe/?lang=${lang}&model=${model}`,
+        `${API_URL}transcribe/?lang=${lang}&model=${model}`,
         { method: "POST", body: fd }
       );
 
